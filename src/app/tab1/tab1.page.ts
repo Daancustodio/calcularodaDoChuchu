@@ -7,6 +7,38 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  Resultado;
+  InputsdeEntrada = "";
+  ListaOperacoes = ['+','-','*','÷'];
+
+  constructor() {
+  }
+
+  AddNumber(numero:string){
+    if(this.InputsdeEntrada == "" && this.ListaOperacoes.includes(numero)){
+      return;
+    }
+
+    if(numero=='C'){
+      this.InputsdeEntrada="";
+      this.Resultado = '';
+
+    }else{
+      this.InputsdeEntrada = this.InputsdeEntrada + numero;
+    }
+
+  }
+
+  Calcular(){
+    if(this.InputsdeEntrada.includes('+')){
+      var valosParaSoma = this.InputsdeEntrada.split("+");
+      var resultadoArtmetico = 0;
+      valosParaSoma.forEach(stringNumerica => {
+        resultadoArtmetico = resultadoArtmetico + parseInt(stringNumerica);
+      });
+
+      this.Resultado = resultadoArtmetico;
+    }
+  }
 
 }
